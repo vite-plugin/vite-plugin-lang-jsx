@@ -1,0 +1,24 @@
+{
+  "name": "vite-plugin-lang-jsx",
+  "version": "0.0.0",
+  "description": "Automatically enabled jsx for when using vite-plugin-vue2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vite-plugin/vite-plugin-lang-jsx.git"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "jsx"
+  ],
+  "author": "younglei <youngleish@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vite-plugin/vite-plugin-lang-jsx/issues"
+  },
+  "homepage": "https://github.com/vite-plugin/vite-plugin-lang-jsx#readme"
+}
