@@ -1,25 +1,26 @@
 # vite-plugin-lang-jsx
 
-Automatically add `lang="jsx"` to `<script>` tag when using `vite-plugin-vue2`
+在使用 vite-plugin-vue2 时自动添加 lang="jsx" 到 `<script>` 标签上
 
 [![npm package](https://nodei.co/npm/vite-plugin-lang-jsx.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vite-plugin-lang-jsx)
 [![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
 [![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
 
-English | [简体中文](https://github.com/vite-plugin/vite-plugin-lang-jsx/README.zh-CN.md)
+[English](https://github.com/vite-plugin/vite-plugin-lang-jsx/#readme) | 简体中文
 
-✅ Support write `jsx` in `.vue` files  
-✅ Support write `jsx` in `.js` files  
 
-## Install
+✅ 支持在 .vue 文件中写 jsx  
+✅ 支持在 .js 文件中写 jsx  
 
-```sh
+## 安装
+
+```bash
 npm i vite-plugin-lang-jsx -D
 ```
 
-## Usage
+## 使用
 
-🚧 The plugin should be placed before `vite-plugin-vue2`
+🚧 该插件应该放到 `vite-plugin-vue2` 前面
 
 ```js
 import langJsx from 'vite-plugin-lang-jsx'
@@ -33,7 +34,7 @@ export default {
 }
 ```
 
-## Definition
+## 定义
 
 ```typescript
 export type LangJsx = (options?: {
@@ -44,10 +45,10 @@ export type LangJsx = (options?: {
 }) => import('vite').Plugin
 ```
 
-## How to work
+## 原理
 
 ```html
-// source code
+// 源代码
 <script>
   export default {
     render() {
@@ -56,7 +57,7 @@ export type LangJsx = (options?: {
   }
 </script>
 
-// transformed
+// 转换后代码
 <script lang="jsx">
   export default {
     render() {
@@ -66,10 +67,9 @@ export type LangJsx = (options?: {
 </script>
 ```
 
-## Why
+## 意义
 
-When we upgrade the Vue2.x proejct created by `@vue/cli` to Vite, we will use `vue-plugin-vue2`.
+当我们将 @vue/cli 创建的 Vue2.x 项目升级到 Vite 时，会用到 vite-plugin-vue2 插件
 
-1. However, `vue-plugin-vue2` does not automatically handle the `jsx` syntax in `<script>`. So we need to add `lang=jsx` above `<script>` to ensure its worked.
-
-2. Secondly, the plugin allows you to write `jsx` syntax in the `.js` file.  
+1. 但是 vue-plugin-vue2 插件不能自动处理 `<script>` 标签中的 jsx 语法。所有需要添加 lang=jsx 到 `<script>` 标签上，以保证语法正常解析
+2. 其次，该插件允许你在 .js 文件中写 jsx 语法
