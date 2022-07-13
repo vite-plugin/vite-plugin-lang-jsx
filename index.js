@@ -54,7 +54,8 @@ module.exports = function langJsx(options = {}) {
       });
     },
     async transform(code, id) {
-      if (!id.endsWith('.vue') || !scriptRE.exec(code)) return
+      scriptRE.lastIndex = 0; // 🐞
+      if (!id.endsWith('.vue') || !scriptRE.exec(code)) return;
 
       let loader = 'js';
       scriptRE.lastIndex = 0;
