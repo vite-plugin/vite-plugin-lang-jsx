@@ -1,0 +1,17 @@
+{
+  "name": "vite-plugin-lang-jsx-test",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^2.7.5"
+  },
+  "devDependencies": {
+    "vite": "^2.9.9",
+    "vite-plugin-vue2": "^2.0.1",
+    "vue-template-compiler": "^2.7.5"
+  }
+}

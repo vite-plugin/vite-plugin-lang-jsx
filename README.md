@@ -33,17 +33,6 @@ export default {
 }
 ```
 
-## Definition
-
-```typescript
-export type LangJsx = (options?: {
-  /**
-   * @default 'jsx'
-   */
-  lang?: 'jsx' | 'tsx'
-}) => import('vite').Plugin
-```
-
 ## How to work
 
 ```html

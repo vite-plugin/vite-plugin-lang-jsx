@@ -34,17 +34,6 @@ export default {
 }
 ```
 
-## 定义
-
-```typescript
-export type LangJsx = (options?: {
-  /**
-   * @default 'jsx'
-   */
-  lang?: 'jsx' | 'tsx'
-}) => import('vite').Plugin
-```
-
 ## 原理
 
 ```html

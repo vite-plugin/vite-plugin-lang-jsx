@@ -1,11 +1,8 @@
+import { Plugin } from 'vite';
 
-export type LangJsx = (options?: {
-  /**
-   * @default 'jsx'
-   */
-  lang?: 'jsx' | 'tsx'
-}) => import('vite').Plugin
+declare const langJsx: LangJsx;
+export default langJsx;
 
-export const langJsx: LangJsx
-
-export default langJsx
+export interface LangJsx {
+  (): Plugin[];
+}
