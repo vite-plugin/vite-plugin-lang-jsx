@@ -23,5 +23,9 @@
     "jsx",
     "vite-jsx",
     "vite-plugin-vue2"
+  ],
+  "files": [
+    "index.js",
+    "index.d.ts"
   ]
 }
