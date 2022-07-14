@@ -4,19 +4,19 @@
     <hr />
     <Body />
     <hr />
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
 <script>
 import Head from './components/head.vue';
 import Body from './components/body.vue';
-// import Footer from './components/footer';
+import Footer from './components/footer';
 export default {
   components: {
     Head,
     Body,
-    // Footer,
+    Footer,
   },
 }
 </script>
