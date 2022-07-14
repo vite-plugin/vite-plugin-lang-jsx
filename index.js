@@ -5,9 +5,8 @@ const jsx = require('acorn-jsx');
 /**
  * @type {import('./index').LangJsx}
  */
-module.exports = function langJsx(options = {}) {
-  if (!options.lang) options.lang = 'jsx';
-
+module.exports = function langJsx() {
+  const LANG = 'jsx';
   const astExt = new AstExt;
   const name = 'vite-plugin-lang-jsx';
   // https://github.com/vitejs/vite/blob/e8c840abd2767445a5e49bab6540a66b941d7239/packages/vite/src/node/optimizer/scan.ts#L147
@@ -40,7 +39,7 @@ module.exports = function langJsx(options = {}) {
               if (['ts', 'tsx', 'jsx'].includes(lang)) {
                 loader = lang;
               } else if (await astExt.checkJSX(content)) {
-                loader = options.lang;
+                loader = LANG;
               }
               js = content;
             }
@@ -55,7 +54,7 @@ module.exports = function langJsx(options = {}) {
     },
     async transform(code, id) {
       scriptRE.lastIndex = 0; // 🐞
-      if (!id.endsWith('.vue') || !scriptRE.exec(code)) return;
+      if (!(id.endsWith('.vue') && scriptRE.exec(code))) return;
 
       let loader = 'js';
       scriptRE.lastIndex = 0;
@@ -66,14 +65,15 @@ module.exports = function langJsx(options = {}) {
       if (['ts', 'tsx', 'jsx'].includes(lang)) {
         loader = lang;
       } else if (await astExt.checkJSX(content)) {
-        loader = options.lang;
+        loader = LANG;
       }
 
       return loader === 'js'
         ? undefined
         : code.replace(openTag, openTag.replace('>', ` lang="${loader}">`));
     },
-    /* async transform(code, id) {
+    /* 
+    async transform(code, id) {
       if (!id.endsWith('.vue')) return;
 
       let isJSX = false;
@@ -93,9 +93,10 @@ module.exports = function langJsx(options = {}) {
       }
 
       if (isJSX) {
-        return code.replace('<script>', `<script lang="${options.lang}">`);
+        return code.replace('<script>', `<script lang="jsx">`);
       }
-    }, */
+    }, 
+    */
   };
 };
 
