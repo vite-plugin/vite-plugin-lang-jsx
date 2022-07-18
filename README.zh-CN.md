@@ -36,6 +36,8 @@ export default {
 
 ## 原理
 
+`.vue` 文件
+
 ```html
 // 源代码
 <script>
@@ -54,6 +56,16 @@ export default {
     },
   }
 </script>
+```
+
+`.js` 文件
+
+```js
+// 源代码
+import JsxComponent from './jsx-component'
+
+// 添加 `lang.jsx` 尾缀
+import JsxComponent from './jsx-component?lang.jsx'
 ```
 
 ## 意义

@@ -3,7 +3,7 @@ export default {
   render() {
     return (
       <div>
-        components/footer.vue
+        components/footer.js
       </div>
     )
   },

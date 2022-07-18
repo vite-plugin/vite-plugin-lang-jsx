@@ -29,17 +29,16 @@ module.exports = function langJsx() {
       resolve = config.createResolver({ preferRelative: true });
     },
     async resolveId(source, importer) {
+      if (source.startsWith('\0')) return;
       if (source.startsWith('/@fs/')) return;
       if (source.startsWith('/@id/')) return;
-      if (source.startsWith('/node_modules/')) return;
       if (source.startsWith('/@vite/')) return;
-      if (source.startsWith('\0')) return;
-      // At present, only `.js` files are supported.
-      if (!source.endsWith('.js')) return;
+      if (source.startsWith('/node_modules/')) return;
 
       try {
         const resolved = await resolve(source, importer);
-        if (resolved) {
+        // At present, only `.js` files are supported.
+        if (resolved && resolved.endsWith('.js')) {
           const code = fs.readFileSync(resolved, 'utf8');
           const isJsx = await astExt.checkJSX(code);
           if (isJsx) {

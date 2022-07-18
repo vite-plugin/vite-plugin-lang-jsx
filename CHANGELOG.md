@@ -1,4 +1,9 @@
 
+## [2022-07-18] v1.4.1
+
+- fa8aa46 docs: v1.4.1
+- 8f420f7 chore: fix typo
+- 9b46cb9 chore: better `.js` detect
 ## [2022-07-14] v1.4.0
 
 - 705633e v1.4.0
