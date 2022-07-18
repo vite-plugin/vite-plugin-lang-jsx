@@ -6,7 +6,7 @@ Automatically add `lang="jsx"` to `<script>` tag when using `vite-plugin-vue2`
 [![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
 [![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
 
-English | [简体中文](https://github.com/vite-plugin/vite-plugin-lang-jsx/README.zh-CN.md)
+English | [简体中文](https://github.com/vite-plugin/vite-plugin-lang-jsx/blob/main/README.zh-CN.md)
 
 ✅ Support write `jsx` in `.vue` files  
 ✅ Support write `jsx` in `.js` files  
@@ -35,6 +35,8 @@ export default {
 
 ## How to work
 
+`.vue` files
+
 ```html
 // source code
 <script>
@@ -53,6 +55,18 @@ export default {
     },
   }
 </script>
+
+```
+
+`.js` files
+
+```js
+// source code
+import JsxComponent from './jsx-component'
+
+// add `lang.jsx` suffix
+import JsxComponent from './jsx-component?lang.jsx'
+
 ```
 
 ## Why
