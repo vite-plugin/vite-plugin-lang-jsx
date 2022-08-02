@@ -33,7 +33,10 @@ module.exports = function langJsx() {
       if (source.startsWith('/@fs/')) return;
       if (source.startsWith('/@id/')) return;
       if (source.startsWith('/@vite/')) return;
-      if (source.startsWith('/node_modules/')) return;
+
+      // #3
+      if (source.includes('node_modules')) return;
+      if (importer.includes('node_modules')) return;
 
       try {
         const resolved = await resolve(source, importer);
