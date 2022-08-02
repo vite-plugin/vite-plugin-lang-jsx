@@ -3,8 +3,8 @@
 Support write jsx in js files
 
 [![npm package](https://nodei.co/npm/vite-plugin-lang-jsx.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vite-plugin-lang-jsx)
-[![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
-[![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
+[![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg)](https://npmjs.org/package/vite-plugin-lang-jsx)
+[![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg)](https://npmjs.org/package/vite-plugin-lang-jsx)
 
 English | [简体中文](https://github.com/vite-plugin/vite-plugin-lang-jsx/blob/main/README.zh-CN.md)
 
@@ -88,8 +88,10 @@ import JsxComponent from './jsx-component?lang.jsx'
 
 ## Why
 
-When we upgrade the Vue2.x proejct created by `@vue/cli` to Vite, we will use `vue-plugin-vue2`.
+While we upgrade the Vue2.x proejct created by `@vue/cli` to Vite, we will use `vue-plugin-vue2`.
 
 1. However, `vue-plugin-vue2` does not automatically handle the `jsx` syntax in `<script>`. So we need to add `lang=jsx` above `<script>` to ensure its worked.
 
 2. Secondly, the plugin allows you to write `jsx` syntax in the `.js` file.  
+
+Many times many prople like to write `jsx` in the `.js` file in the React project.

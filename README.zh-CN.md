@@ -3,8 +3,8 @@
 支持在 js 文件中写 jsx
 
 [![npm package](https://nodei.co/npm/vite-plugin-lang-jsx.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vite-plugin-lang-jsx)
-[![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
-[![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
+[![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg)](https://npmjs.org/package/vite-plugin-lang-jsx)
+[![NPM Downloads](https://img.shields.io/npm/dm/vite-plugin-lang-jsx.svg)](https://npmjs.org/package/vite-plugin-lang-jsx)
 
 [English](https://github.com/vite-plugin/vite-plugin-lang-jsx/#readme) | 简体中文
 
@@ -91,3 +91,5 @@ import JsxComponent from './jsx-component?lang.jsx'
 
 1. 但是 vue-plugin-vue2 插件不能自动处理 `<script>` 标签中的 jsx 语法。所有需要添加 lang=jsx 到 `<script>` 标签上，以保证语法正常解析
 2. 其次，该插件允许你在 .js 文件中写 jsx 语法
+
+很多时候很多人喜欢在 React 工程中在 .js 文件中写 jsx
