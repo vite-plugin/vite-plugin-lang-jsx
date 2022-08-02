@@ -17,11 +17,11 @@ module.exports = function langJsx() {
   /**
    * @type {import('vite').ResolveFn}
    */
-   let resolve;
+  let resolve;
 
-   /**
-   * @type {import('vite').Plugin}
-   */
+  /**
+  * @type {import('vite').Plugin}
+  */
   const plugin1 = {
     name: `${name}:resolve`,
     enforce: 'pre',
@@ -140,7 +140,7 @@ module.exports = function langJsx() {
     }, 
     */
   };
-  
+
   return [plugin1, plugin2];
 };
 
