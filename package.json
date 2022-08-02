@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-lang-jsx",
-  "version": "1.4.1",
-  "description": "Automatically enabled jsx for when using vite-plugin-vue2",
+  "version": "1.4.2",
+  "description": "Support write jsx in js files",
   "main": "index.js",
   "repository": {
     "type": "git",
