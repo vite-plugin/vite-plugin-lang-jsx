@@ -21,8 +21,9 @@
   },
   "keywords": [
     "jsx",
-    "vite-jsx",
-    "vite-plugin-vue2"
+    "vite",
+    "vue",
+    "react"
   ],
   "files": [
     "index.js",
