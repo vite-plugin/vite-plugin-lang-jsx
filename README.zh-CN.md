@@ -1,6 +1,6 @@
 # vite-plugin-lang-jsx
 
-在使用 vite-plugin-vue2 时自动添加 lang="jsx" 到 `<script>` 标签上
+支持在 js 文件中写 jsx
 
 [![npm package](https://nodei.co/npm/vite-plugin-lang-jsx.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vite-plugin-lang-jsx)
 [![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
@@ -10,7 +10,7 @@
 
 
 ✅ 支持在 .vue 文件中写 jsx  
-✅ 支持在 .js 文件中写 jsx  
+✅ 兼容 `create-react-app`  
 
 ## 安装
 
@@ -19,6 +19,10 @@ npm i vite-plugin-lang-jsx -D
 ```
 
 ## 使用
+
+#### Vue2 工程
+
+在使用 vite-plugin-vue2 时自动添加 lang="jsx" 到 `<script>` 标签上
 
 🚧 该插件应该放到 `vite-plugin-vue2` 前面
 
@@ -30,6 +34,19 @@ export default {
   plugins: [
     langJsx(),
     createVuePlugin(),
+  ]
+}
+```
+
+#### create-react-app
+
+```js
+import langJsx from 'vite-plugin-lang-jsx'
+
+export default {
+  plugins: [
+    langJsx(),
+    // ...其他插件
   ]
 }
 ```

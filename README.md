@@ -1,6 +1,6 @@
 # vite-plugin-lang-jsx
 
-Automatically add `lang="jsx"` to `<script>` tag when using `vite-plugin-vue2`
+Support write jsx in js files
 
 [![npm package](https://nodei.co/npm/vite-plugin-lang-jsx.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/vite-plugin-lang-jsx)
 [![NPM version](https://img.shields.io/npm/v/vite-plugin-lang-jsx.svg?style=flat)](https://npmjs.org/package/vite-plugin-lang-jsx)
@@ -9,7 +9,7 @@ Automatically add `lang="jsx"` to `<script>` tag when using `vite-plugin-vue2`
 English | [简体中文](https://github.com/vite-plugin/vite-plugin-lang-jsx/blob/main/README.zh-CN.md)
 
 ✅ Support write `jsx` in `.vue` files  
-✅ Support write `jsx` in `.js` files  
+✅ Compatible `create-react-app`  
 
 ## Install
 
@@ -18,6 +18,10 @@ npm i vite-plugin-lang-jsx -D
 ```
 
 ## Usage
+
+#### Vue2 Project
+
+Automatically add `lang="jsx"` to `<script>` tag when using `vite-plugin-vue2`
 
 🚧 The plugin should be placed before `vite-plugin-vue2`
 
@@ -29,6 +33,19 @@ export default {
   plugins: [
     langJsx(),
     createVuePlugin(),
+  ]
+}
+```
+
+#### create-react-app
+
+```js
+import langJsx from 'vite-plugin-lang-jsx'
+
+export default {
+  plugins: [
+    langJsx(),
+    // ...other plugins
   ]
 }
 ```
