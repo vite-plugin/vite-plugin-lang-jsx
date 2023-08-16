@@ -32,7 +32,7 @@ import { createVuePlugin } from 'vite-plugin-vue2'
 
 export default {
   plugins: [
-    langJsx(),
+    langJsx(/* options */),
     createVuePlugin(),
   ]
 }
@@ -48,6 +48,16 @@ export default {
     langJsx(),
     // ...其他插件
   ]
+}
+```
+
+## API <sub><sup>(Define)</sup></sub>
+
+```ts
+export interface LangJsx {
+  (options?: {
+    filter?: (id: string) => boolean | void;
+  }): Plugin[];
 }
 ```
 
