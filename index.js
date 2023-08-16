@@ -5,7 +5,7 @@ const jsx = require('acorn-jsx');
 /**
  * @type {import('./index').LangJsx}
  */
-module.exports = function langJsx() {
+module.exports = function langJsx(options = {}) {
   const LANG = 'jsx';
   const astExt = new AstExt;
   const name = 'vite-plugin-lang-jsx';
@@ -18,11 +18,16 @@ module.exports = function langJsx() {
    * @type {import('vite').ResolveFn}
    */
   let resolve;
+  /**
+   * @type {Map<string, string>}
+   */
+  const jsxFileCache = new Map();
+  const toLangJsx = id => id.endsWith('.jsx') ? id : id + '?lang.jsx';
 
   /**
   * @type {import('vite').Plugin}
   */
-  const plugin1 = {
+  const plugin_for_js = {
     name: `${name}:resolve`,
     enforce: 'pre',
     configResolved(config) {
@@ -38,6 +43,11 @@ module.exports = function langJsx() {
       if (source.includes('node_modules')) return;
       if (importer.includes('node_modules')) return;
 
+      const jsxId = jsxFileCache.get(source);
+      if (jsxId) {
+        return jsxId;
+      }
+
       try {
         const resolved = await resolve(source, importer);
         // At present, only `.js` files are supported.
@@ -45,8 +55,11 @@ module.exports = function langJsx() {
           const code = fs.readFileSync(resolved, 'utf8');
           const isJsx = await astExt.checkJSX(code);
           if (isJsx) {
-            // e.g. `head.vue?vue&type=script&lang.jsx` - (vite-plugin-vue2 handled)
-            return resolved + '?lang.jsx';
+            // User filter
+            if (options.filter?.(resolved) === false) return;
+
+            jsxFileCache.set(source, resolved);
+            return toLangJsx(resolved);
           }
         }
       } catch (e) { }
@@ -56,7 +69,7 @@ module.exports = function langJsx() {
   /**
    * @type {import('vite').Plugin}
    */
-  const plugin2 = {
+  const plugin_for_vue = {
     name,
     config(config) {
       if (!config.optimizeDeps) config.optimizeDeps = {};
@@ -141,7 +154,7 @@ module.exports = function langJsx() {
     */
   };
 
-  return [plugin1, plugin2];
+  return [plugin_for_js, plugin_for_vue];
 };
 
 class AstExt {
@@ -152,14 +165,9 @@ class AstExt {
   deepWalk(ast, cb) {
     if (!ast) return;
     if (typeof ast === 'object') {
-      for (const key of Object.keys(ast)) {
-        const bool = cb({ [key]: ast[key] });
-        if (bool === false) return;
-        this.deepWalk(ast[key], cb);
-      }
-    }
-    if (Array.isArray(ast)) {
-      for (const item of ast) {
+      for (const item of Object.values(ast)) {
+        if (!(item && typeof item === 'object')) continue;
+
         const bool = cb(item);
         if (bool === false) return;
         this.deepWalk(item, cb);
@@ -168,15 +176,18 @@ class AstExt {
   }
 
   async checkJSX(content) {
-    return new Promise(resolve => {
-      const ast = this.acornExt.parse(content, { sourceType: 'module', ecmaVersion: 'latest' });
-      this.deepWalk(ast, node => {
-        if (['JSXElement', 'JSXFragment'].includes(node.type)) {
-          resolve(true);
-          return false;
-        }
-      });
-      resolve(false);
+    // It's not rigorous enough, but the performance is high enough.
+    return /<[\s\/\w-$]*>/.test(content);
+
+    let isAst = false;
+    const ast = this.acornExt.parse(content, { sourceType: 'module', ecmaVersion: 'latest' });
+    this.deepWalk(ast, node => {
+      if (['JSXElement', 'JSXFragment'].includes(node.type)) {
+        isAst = true;
+        return false;
+      }
     });
+
+    return isAst;
   }
 }

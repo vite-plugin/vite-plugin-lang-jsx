@@ -1,3 +1,6 @@
+## [2022-08-16] v1.5.0
+
+- dc3a5be feat: support `options.filter`, better performance
 
 ## [2022-07-18] v1.4.2
 
