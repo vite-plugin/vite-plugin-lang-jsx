@@ -4,5 +4,7 @@ declare const langJsx: LangJsx;
 export default langJsx;
 
 export interface LangJsx {
-  (): Plugin[];
+  (options?: {
+    filter?: (id: string) => boolean | void;
+  }): Plugin[];
 }
