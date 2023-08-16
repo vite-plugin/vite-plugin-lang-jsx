@@ -57,6 +57,10 @@ export default {
 export interface LangJsx {
   (options?: {
     filter?: (id: string) => boolean | void;
+    /**
+     * 使用 ast 检测 JSX, 默认使用正则.
+     */
+    useAst?: boolean;
   }): Plugin[];
 }
 ```

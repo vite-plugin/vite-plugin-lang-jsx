@@ -50,10 +50,14 @@ module.exports = function langJsx(options = {}) {
 
       try {
         const resolved = await resolve(source, importer);
+
+        if (!resolved) return;
+        if (resolved.includes('node_modules')) return;
+
         // At present, only `.js` files are supported.
-        if (resolved && resolved.endsWith('.js')) {
+        if (resolved.endsWith('.js')) {
           const code = fs.readFileSync(resolved, 'utf8');
-          const isJsx = await astExt.checkJSX(code);
+          const isJsx = await astExt.checkJSX(code, options.useAst);
           if (isJsx) {
             // User filter
             if (options.filter?.(resolved) === false) return;
@@ -93,7 +97,7 @@ module.exports = function langJsx(options = {}) {
               const lang = langMatch && (langMatch[1] || langMatch[2] || langMatch[3]);
               if (['ts', 'tsx', 'jsx'].includes(lang)) {
                 loader = lang;
-              } else if (await astExt.checkJSX(content)) {
+              } else if (await astExt.checkJSX(content, options.useAst)) {
                 loader = LANG;
               }
               js = content;
@@ -119,7 +123,7 @@ module.exports = function langJsx(options = {}) {
       const lang = langMatch && (langMatch[1] || langMatch[2] || langMatch[3]);
       if (['ts', 'tsx', 'jsx'].includes(lang)) {
         loader = lang;
-      } else if (await astExt.checkJSX(content)) {
+      } else if (await astExt.checkJSX(content, options.useAst)) {
         loader = LANG;
       }
 
@@ -175,19 +179,21 @@ class AstExt {
     }
   }
 
-  async checkJSX(content) {
+  async checkJSX(content, useAst = false) {
+    if (useAst) {
+      let isAst = false;
+      const ast = this.acornExt.parse(content, { sourceType: 'module', ecmaVersion: 'latest' });
+      this.deepWalk(ast, node => {
+        if (['JSXElement', 'JSXFragment'].includes(node.type)) {
+          isAst = true;
+          return false;
+        }
+      });
+
+      return isAst;
+    }
+
     // It's not rigorous enough, but the performance is high enough.
     return /<[\s\/\w-$]*>/.test(content);
-
-    let isAst = false;
-    const ast = this.acornExt.parse(content, { sourceType: 'module', ecmaVersion: 'latest' });
-    this.deepWalk(ast, node => {
-      if (['JSXElement', 'JSXFragment'].includes(node.type)) {
-        isAst = true;
-        return false;
-      }
-    });
-
-    return isAst;
   }
 }

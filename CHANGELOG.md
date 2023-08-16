@@ -1,3 +1,7 @@
+## [2022-08-16] v1.5.1
+
+- 14cc294 feat: support switch AST
+
 ## [2022-08-16] v1.5.0
 
 - dc3a5be feat: support `options.filter`, better performance
