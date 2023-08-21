@@ -62,8 +62,9 @@ module.exports = function langJsx(options = {}) {
             // User filter
             if (options.filter?.(resolved) === false) return;
 
-            jsxFileCache.set(source, resolved);
-            return toLangJsx(resolved);
+            const jsxId = toLangJsx(resolved);
+            jsxFileCache.set(source, jsxId);
+            return jsxId;
           }
         }
       } catch (e) { }
@@ -181,16 +182,16 @@ class AstExt {
 
   async checkJSX(content, useAst = false) {
     if (useAst) {
-      let isAst = false;
+      let jsJSX = false;
       const ast = this.acornExt.parse(content, { sourceType: 'module', ecmaVersion: 'latest' });
       this.deepWalk(ast, node => {
         if (['JSXElement', 'JSXFragment'].includes(node.type)) {
-          isAst = true;
+          jsJSX = true;
           return false;
         }
       });
 
-      return isAst;
+      return jsJSX;
     }
 
     // It's not rigorous enough, but the performance is high enough.
