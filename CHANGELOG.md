@@ -1,4 +1,8 @@
-## [2022-08-16] v1.5.1
+## [2023-08-21] v1.5.2
+
+- 2fa7377 fix: use `jsxId` cache instead `resolved`
+
+## [2023-08-16] v1.5.1
 
 - 14cc294 feat: support switch AST
 
