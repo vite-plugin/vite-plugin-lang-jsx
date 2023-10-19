@@ -41,7 +41,7 @@ module.exports = function langJsx(options = {}) {
 
       // #3
       if (source.includes('node_modules')) return;
-      if (importer.includes('node_modules')) return;
+      if (importer?.includes('node_modules')) return;
 
       const jsxId = jsxFileCache.get(source);
       if (jsxId) {
