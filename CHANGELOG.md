@@ -1,3 +1,7 @@
+## [2023-10-19] v1.5.3
+
+- 4d737cd fix: Cannot read property 'includes' of undefined #7
+
 ## [2023-08-21] v1.5.2
 
 - 2fa7377 fix: use `jsxId` cache instead `resolved`

@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-lang-jsx",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Support write jsx in js files",
   "main": "index.js",
   "repository": {
